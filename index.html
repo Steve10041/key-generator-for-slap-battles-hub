@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Generator</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 40px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+
+    .key-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    #generatedKey {
+      font-size: 20px;
+      background-color: #333;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      color: #0ff;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #00cc66;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #00994d;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Key Generato</h1>
+
+  <div class="key-container">
+    <input type="text" id="generatedKey" readonly>
+    <button onclick="copyKey()">Copiar</button>
+  </div>
+
+  <script>
+    function generateKey() {
+      const part1 = Math.random().toString(36).substring(2, 8).toUpperCase();
+      const part2 = Math.random().toString(36).substring(2, 10).toUpperCase();
+      return `FREE_${part1}_${part2}`;
+    }
+
+    function copyKey() {
+      const keyInput = document.getElementById("generatedKey");
+      keyInput.select();
+      keyInput.setSelectionRange(0, 99999); // Para móviles
+      document.execCommand("copy");
+      alert("Key copiada: " + keyInput.value);
+    }
+
+    // Generar una key automáticamente al cargar
+    document.getElementById("generatedKey").value = generateKey();
+  </script>
+
+</body>
+</html>
